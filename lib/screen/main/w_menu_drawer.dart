@@ -46,7 +46,7 @@ class _MenuDrawerState extends State<MenuDrawer> {
               decoration: BoxDecoration(
                   borderRadius: const BorderRadius.only(
                       topRight: Radius.circular(5), bottomRight: Radius.circular(5)),
-                  color: context.colors.background),
+                  color: context.colors.surface),
               child: isSmallScreen(context)
                   ? SingleChildScrollView(
                       child: getMenus(context),
