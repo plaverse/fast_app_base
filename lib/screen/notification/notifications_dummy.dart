@@ -18,11 +18,13 @@ final notificationDummies = <TtossNotification>[
     NotificationType.walk,
     '1,000걸음 이상 걸었다면 포인트 받으세요.',
     DateTime.now().subtract(1.hours),
+    isRead: true,
   ),
   TtossNotification(
     NotificationType.moneyTip,
     '유럽 식품 물가가 치솟고 있어요. \n유재석님, 유럽여행에 관심이 있다면 확인해보세요.',
     DateTime.now().subtract(8.hours),
+    isRead: true,
   ),
   TtossNotification(
     NotificationType.walk,

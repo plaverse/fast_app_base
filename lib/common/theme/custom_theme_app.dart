@@ -1,6 +1,5 @@
-import 'package:flutter/material.dart';
-
 import '../../app.dart';
+import 'package:flutter/material.dart';
 import '../data/preference/prefs.dart';
 import 'custom_theme.dart';
 import 'custom_theme_holder.dart';

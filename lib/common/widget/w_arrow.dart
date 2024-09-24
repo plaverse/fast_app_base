@@ -3,13 +3,13 @@ import 'package:flutter/material.dart';
 class Arrow extends StatelessWidget {
   final double size;
   final AxisDirection direction;
-  final Color color; // 색상 추가
+  final Color? color; // 색상 추가
 
   const Arrow({
     Key? key,
     this.size = 15,
     AxisDirection? direction,
-    this.color = Colors.white,
+    this.color,
   }) : direction = direction ?? AxisDirection.right,
         super(key: key);
 
