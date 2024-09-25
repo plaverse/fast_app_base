@@ -1,4 +1,3 @@
-import 'package:fast_app_base/app.dart';
 import 'package:fast_app_base/common/common.dart';
 import 'package:fast_app_base/screen/notification/vo/vo_notification.dart';
 import 'package:flutter/material.dart';

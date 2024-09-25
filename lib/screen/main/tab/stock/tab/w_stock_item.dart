@@ -1,4 +1,3 @@
-import 'package:fast_app_base/app.dart';
 import 'package:fast_app_base/common/common.dart';
 import 'package:flutter/material.dart';
 import '../vo_stock.dart';
@@ -17,7 +16,7 @@ class StockItem extends StatelessWidget {
         children: [
           Image.asset(stock.stockImagePath, width: 50),
           width20,
-          (stock.stockName).text.size(18).bold.make(),
+          (stock.name).text.size(18).bold.make(),
           emptyExpanded,
           Column(
             crossAxisAlignment: CrossAxisAlignment.end,

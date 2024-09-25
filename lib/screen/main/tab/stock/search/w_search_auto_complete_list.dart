@@ -5,15 +5,19 @@ import 'package:flutter/material.dart';
 
 
 class SearchAutoCompleteList extends StatelessWidget with SearchStockDataProvider {
-  SearchAutoCompleteList({super.key});
+  final TextEditingController controller;
+  SearchAutoCompleteList(this.controller, {super.key});
 
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
       itemBuilder: (context, index) {
-        final stockName = searchData.autoCompleteList[index].stockName;
+        final stock = searchData.autoCompleteList[index];
+        final stockName = stock.name;
         return Tap (
         onTap: () {
+          controller.clear();
+          searchData.addHistory(stock);
           Nav.push(StockDetailScreen(stockName));
         },
         child:

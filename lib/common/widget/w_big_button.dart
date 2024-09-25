@@ -1,4 +1,3 @@
-import 'package:fast_app_base/app.dart';
 import 'package:fast_app_base/common/common.dart';
 import 'package:fast_app_base/common/widget/w_arrow.dart';
 import 'package:fast_app_base/common/widget/w_rounded_container.dart';

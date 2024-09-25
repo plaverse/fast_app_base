@@ -1,6 +1,4 @@
-import 'package:fast_app_base/common/common.dart';
 import 'package:fast_app_base/screen/notification/notifications_dummy.dart';
-import 'package:fast_app_base/screen/notification/vo/vo_notification.dart';
 import 'package:fast_app_base/screen/notification/w_notification_item.dart';
 import 'package:flutter/material.dart';
 
