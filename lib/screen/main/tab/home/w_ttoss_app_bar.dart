@@ -13,6 +13,7 @@ class TtossAppBar extends StatefulWidget {
 
 class _TtossAppBarState extends State<TtossAppBar> {
   bool _showRedDot = false;
+  int _tappingCount = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -22,14 +23,44 @@ class _TtossAppBarState extends State<TtossAppBar> {
       child: Row(
         children: [
           width10,
-          Image.asset(
-            "$basePath/icon/toss.png",
-            height: 40,
+          AnimatedContainer(
+            duration: 1000.ms,
+            color: _tappingCount > 2 ? Colors.red : Colors.blue,
+            //curve: Curves. easeIn,  //easeIn, decelerate를 많이 쓴다. default값은 linear
+            height: _tappingCount > 2 ? 60 : 30,
+            //width: 70,
+            child: Image.asset(
+              "$basePath/icon/toss.png",
+            ).opacity75(),
           ),
-          emptyExpanded, //공간 벌리기
-          Image.asset(
-            "$basePath/icon/map_point.png",
-            height: 30,
+
+          AnimatedCrossFade(
+            firstChild: Image.asset(
+              "$basePath/icon/toss.png",
+              height: 30,
+            ),
+            secondChild: Image.asset(
+              "$basePath/icon/map_point.png",
+              height: 30,
+            ),
+            crossFadeState: _tappingCount > 2
+                ? CrossFadeState.showFirst
+                : CrossFadeState.showSecond,
+            duration: 1500.ms,
+          ),
+          emptyExpanded,
+          _tappingCount.text.make(),
+
+          Tap(
+            onTap: () {
+              setState(() {
+                _tappingCount++;
+              });
+            },
+            child: Image.asset(
+              "$basePath/icon/map_point.png",
+              height: 30,
+            ),
           ),
           width10,
           Tap(
@@ -59,7 +90,7 @@ class _TtossAppBarState extends State<TtossAppBar> {
                   ))
               ],
             )
-              //.animate(onComplete: (controller) => controller.repeat()) //반복
+                //.animate(onComplete: (controller) => controller.repeat()) //반복
                 .animate()
                 .shake(duration: 2000.ms, hz: 3)
                 .then()
