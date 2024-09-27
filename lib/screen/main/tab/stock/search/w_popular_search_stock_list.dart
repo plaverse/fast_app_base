@@ -3,7 +3,6 @@ import 'package:fast_app_base/common/common.dart';
 import 'package:fast_app_base/common/dart/extension/datetime_extension.dart';
 import 'package:fast_app_base/screen/main/tab/stock/search/popular_stock_dummy.dart';
 import 'package:fast_app_base/screen/main/tab/stock/search/s_stock_detail.dart';
-import 'package:fast_app_base/screen/main/tab/stock/search/w_popular_stock_item.dart';
 import 'package:flutter/material.dart';
 
 class PopularSearchStockList extends StatelessWidget {

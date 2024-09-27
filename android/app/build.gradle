@@ -50,6 +50,9 @@ android {
         targetSdkVersion 34
         versionCode 1
         versionName "1.0"
+
+        // 추가: NDK 버전 설정
+        ndkVersion "25.1.8937393"
     }
 
     buildTypes {
