@@ -52,7 +52,7 @@ class _RiveLikeButtonState extends State<RiveLikeButton> {
 
 
 
-//rive 애미메이션 예제
+//rive '버스'애미메이션 예제
 // class PlayPauseAnimation extends StatefulWidget {
 //   const PlayPauseAnimation({Key? key}) : super(key: key);
 //
