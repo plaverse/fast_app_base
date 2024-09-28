@@ -14,4 +14,9 @@ class BankAccount {
     this.balance,{
     this.accountTypeName,
   }); //중괄호속에 넣으면 옵션이란 뜻(선언해도되고, 안해도 되는)
+
+  @override
+  String toString() {
+    return 'BankAccount(bank: ${bank.name}, balance: $balance, accountTypeName: ${accountTypeName ?? "N/A"})';
+  }
 }
