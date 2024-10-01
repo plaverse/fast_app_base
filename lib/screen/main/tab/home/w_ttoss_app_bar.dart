@@ -69,7 +69,7 @@ class _TtossAppBarState extends State<TtossAppBar> {
               //   _showRedDot = !_showRedDot;
               // });
               //알림화면
-              Nav.push(NotificationScreen());
+              Nav.push(const NotificationScreen());
             },
             child: Stack(
               children: [
