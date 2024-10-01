@@ -25,6 +25,19 @@ class HomeFragment extends StatefulWidget {
 }
 
 class _HomeFragmentState extends State<HomeFragment> {
+  late final stream = countStream(5).asBroadcastStream();
+  //int count = 0;
+
+  @override
+  void initState() {
+    // countStream(5).listen((event) {
+    //   setState(() {
+    //     count = event;
+    //   });
+    // });
+    super.initState();
+  }
+
   bool isLike = false;
 
   @override
@@ -33,11 +46,11 @@ class _HomeFragmentState extends State<HomeFragment> {
       color: Colors.black,
       child: Stack(
         children: [
-          const LiveBackgroundWidget(
-            palette: Palette(colors: [Colors.red, Colors.green]),
-            velocityX: 1,
-            particleMaxSize: 20,
-          ),
+          // const LiveBackgroundWidget(
+          //   palette: Palette(colors: [Colors.red, Colors.green]),
+          //   velocityX: 1,
+          //   particleMaxSize: 20,
+          // ),
           RefreshIndicator(
             //새로고침
             edgeOffset: TtossAppBar.appBarHeight,
@@ -50,17 +63,62 @@ class _HomeFragmentState extends State<HomeFragment> {
                   bottom: MainScreenState.bottomNavigatorHeight),
               child: Column(
                 children: [
-                   SizedBox(
-                      height: 250,
-                      width: 250,
-                      child: RiveLikeButton(
-                        isLike,
-                        onTapLike: (isLike) {
-                          setState(() {
-                            this.isLike = isLike;
-                          });
-                        },
-                      )),
+                  StreamBuilder(
+                    builder: (context, snapshot) {
+                      final count = snapshot.data;
+
+                      switch(snapshot.connectionState) {
+                        case ConnectionState.active:
+                          if(count == null) {
+                            return const CircularProgressIndicator();
+                          }else{
+                            return count!.text.size(30).bold.make();
+                          }
+
+                        case ConnectionState.waiting:
+                        case ConnectionState.none:
+                          return const CircularProgressIndicator();
+
+                          case ConnectionState.done:
+                          return '완료'.text.size(30).bold.make();
+                      }
+                    },
+                    stream: stream,
+                ),
+                  StreamBuilder(
+                    builder: (context, snapshot) {
+                      final count = snapshot.data;
+
+                      switch(snapshot.connectionState) {
+                        case ConnectionState.active:
+                          if(count == null) {
+                            return const CircularProgressIndicator();
+                          }else{
+                            return count!.text.size(30).bold.make();
+                          }
+
+                        case ConnectionState.waiting:
+                        case ConnectionState.none:
+                          return const CircularProgressIndicator();
+
+                        case ConnectionState.done:
+                          return '완료'.text.size(30).bold.make();
+                      }
+                    },
+                    stream: stream,
+                  ),
+
+                   // SizedBox(
+                   //    height: 250,
+                   //    width: 250,
+                   //    child: RiveLikeButton(
+                   //      isLike,
+                   //      onTapLike: (isLike) {
+                   //        setState(() {
+                   //          this.isLike = isLike;
+                   //        });
+                   //      },
+                   //    )),
                   BigButton(
                     "토스뱅크",
                     onTap: () async{
@@ -90,6 +148,14 @@ class _HomeFragmentState extends State<HomeFragment> {
         ],
       ),
     );
+  }
+
+  Stream<int> countStream(int max) async* {
+    await sleepAsync(2.seconds);
+    for (int i = 1; i <= max; i++) {
+      yield i; //스트림에서는 return 대신 yield를 사용하여 데이터를 생산합니다.
+      await sleepAsync(1.seconds);
+    }
   }
 
   void showSnackbar(BuildContext context) {

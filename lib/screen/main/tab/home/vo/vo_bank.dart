@@ -1,14 +1,26 @@
-class Bank {
-  final String name;
-  final String logoImagePath;
+import 'package:freezed_annotation/freezed_annotation.dart';
 
-  Bank(this.name, this.logoImagePath);
+part 'vo_bank.freezed.dart';
 
-  @override
-  String toString() {
-    return 'Bank(name: $name, logoPath: $logoImagePath)';
-  }
+@freezed
+class Bank with _$Bank {
+  factory Bank(
+      final String name,
+      final String logoImagePath,
+      ) = _Bank;
 }
+
+// class Bank {
+//   final String name;
+//   final String logoImagePath;
+//
+//   Bank(this.name, this.logoImagePath);
+//
+//   @override
+//   String toString() {
+//     return 'Bank(name: $name, logoPath: $logoImagePath)';
+//   }
+// }
 
 
   //아래는 @freezed라이브러리로 더 간단해질수 있다
