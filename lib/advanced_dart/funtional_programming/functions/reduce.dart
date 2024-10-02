@@ -12,8 +12,10 @@ Function reduce = <E>(E Function(E value, E element) combine, Iterable<E> iterab
   return value;
 };
 
-// main() {
-//   print(reduce<int>(add, [1, 2, 3]));
-// }
+main() {
+  print(reduce<int>(multiply, [1, 2, 3, 4, 5, 6]));
+}
 
-// int add(int a, int b) => a + b;
+int add(int a, int b) => a + b;
+
+int multiply(int a, int b) => a * b;

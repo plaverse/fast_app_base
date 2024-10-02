@@ -1,5 +1,5 @@
-import 'package:fast_app_base/screen/main/tab/home/vo/vo_bank.dart';
-import 'package:freezed_annotation/freezed_annotation.dart';
+//import 'package:fast_app_base/screen/main/tab/home/vo/vo_bank.dart';
+//import 'package:freezed_annotation/freezed_annotation.dart';
 
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND

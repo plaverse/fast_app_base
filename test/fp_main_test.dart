@@ -1,3 +1,5 @@
+import 'package:fast_app_base/advanced_dart/funtional_programming/functions/async_map.dart';
+import 'package:fast_app_base/advanced_dart/funtional_programming/functions/fxDart.dart';
 import 'package:fast_app_base/common/cli_common.dart';
 import 'package:fast_app_base/screen/main/tab/home/bank_accounts_dummy.dart';
 import 'package:fast_app_base/screen/main/tab/home/vo/vo_bank_account.dart';
@@ -13,25 +15,31 @@ void main() {
 
     //절차적 프로그래밍 - 명령형 프로그래밍
     //Accounts => Users => User.name => 출력
-   // final accounts = getAccounts();
-
+    // final accounts = await getAccounts();
+    //
     // final list = <String>[];
     // for (final account in accounts) {
-    //   final user = getUser(account.userId);
+    //   final user = await getUser(account.userId);
     //   list.add(user.name);
     // }
     // print(list);
 
     //함수형 프로그래밍 - 선언형 프로그래밍
-    print('start');
-    final accounts = await getAccounts();
-    final nameList = await Future.wait(
-        accounts.map((account) => getUser(account.userId).then((user) => user.name))
-        );
-    print(nameList);
-    print('end');
-  });
-}
+    // print('start');
+    // final nameList = await (await getAccounts())
+    //     .toStream()
+    //     .map(accountToUserId)
+    //     .asyncMap(userIdToFutureUser)
+    //     .map(userToName)
+    //     .toList();
+    //
+    //
+    // // // final nameList = await getAccounts().then(
+    // // //   (accounts) => Future.wait(accounts
+    // // //       .map((account) => getUser(account.userId).then((user) => user.name))),
+    // // // );
+    // print(nameList);
+    // print('end');
 
 // final userList = list;
 // print(userList);
@@ -47,16 +55,22 @@ void main() {
 // print(list);
 // print('end');
 
-// print('start');
-// await fxDart([
-//   await fetchAccounts(),
-//   (accounts) => map((BankAccount account) => account.userId, accounts),
-//   (List<int> userIds) => futureMap(fetchUser, userIds),
-//   (users) => map((User user) => user.name, users),
-//   (names) => runAll((names) => print(names.toList()), names)
-// ]);
-// print('end');
+    print('start');
+    await fxDart([
+      await getAccounts(),
+          mapAccountToUserId,
+          asyncMapIdToUser,
+          mapUserToName,
+          printNames
+    ]);
+    print('end');
+  }
 
+  // String userToName(user) => user.name;
+  //
+  // FutureOr<User> userIdToFutureUser(userId) => getUser(userId);
+  //
+  // int accountToUserId(account) => account.userId;
 //   print('start');
 //   await fxDart([
 //     await fetchAccounts(),
@@ -75,7 +89,16 @@ void main() {
 // idToFetchedUser(List<int> userIds) => futureMap(fetchUser, userIds);
 //
 // accountToUserId(accounts) => map((BankAccount account) => account.userId, accounts);
+  );
+}
 
+printNames(names) => runAll((names) => print(names.toList()), names);
+
+mapUserToName(users) => map((User user) => user.name, users);
+
+asyncMapIdToUser(List<int> userIds) => asyncMap(getUser, userIds);
+
+mapAccountToUserId(accounts) => map((BankAccount account) => account.userId, accounts);
 //sync함수
 // List<BankAccount> getAccounts() {
 //   return bankAccounts;
@@ -94,7 +117,6 @@ void main() {
 //   };
 // }
 
-
 //async함수
 Future<List<BankAccount>> getAccounts() async {
   await sleepAsync(300.ms);
@@ -102,8 +124,8 @@ Future<List<BankAccount>> getAccounts() async {
 }
 
 Future<User> getUser(int id) async {
-  //print('fetch User:$id');
   await sleepAsync(300.ms);
+  print('getUser: $id');
 
   return switch (id) {
     1 => User(id, 'Jason'),

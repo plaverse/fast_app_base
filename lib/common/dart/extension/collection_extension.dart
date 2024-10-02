@@ -5,13 +5,13 @@ extension ListExtension<T> on List<T> {
     this[origin] = temp1;
   }
 
-  Stream<T> toStream() async* {
-    for (final T item in this) {
-      yield item;
-    }
-  }
-}
-
-
-//   Stream<T> toStream() => Stream.fromIterable(this);
+  // Stream<T> toStream() async* {
+  //   for (final T item in this) {
+  //     yield item;
+  //   }
+  // }
 // }
+
+
+  Stream<T> toStream() => Stream.fromIterable(this);
+}

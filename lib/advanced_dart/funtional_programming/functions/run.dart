@@ -11,7 +11,8 @@ Iterable<T> runEach<T>(void Function(T value) doFunction, Iterable<T> next) {
 }
 
 // main() {
-//   // runAll((value) => print(value), [1, 2, 3, 4]);
+//   //print([1,2,3,4]);
+//   //runAll((value) => print(value), [1, 2, 3, 4]);
 //
-//   runEach((value) => print(value), [1, 2, 3, 4]);
-// }
+//    //runEach((value) => print(value), [1, 2, 3, 4]);
+//  }
