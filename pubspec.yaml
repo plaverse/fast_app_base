@@ -78,6 +78,7 @@ dependencies:
   live_background: ^0.1.3
   animations: ^2.0.11
   rive: ^0.13.13
+  http: ^1.2.2
 
 dev_dependencies:
   flutter_test:
